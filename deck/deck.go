@@ -2,6 +2,7 @@ package deck
 
 import (
 	"fmt"
+	"log"
 	"math/rand"
 	"os"
 	"strings"
@@ -10,7 +11,10 @@ import (
 
 type deck []string
 
+// NewDeck creates a new deck of cards
+// It returns a deck containing 52 cards.
 func NewDeck() deck {
+	log.Println("Creating a new deck of cards")
 	cards := deck{}
 
 	cardSuits := []string{"Spades", "Diamonds", "Hearts", "Clubs"}
@@ -38,7 +42,6 @@ func (d deck) toString() string {
 	return strings.Join([]string(d), ",")
 }
 
-
 func (d deck) SaveToFile(filename string) error {
 	return os.WriteFile(filename, []byte(d.toString()), 0666)
 }
@@ -64,5 +67,6 @@ func (d deck) Shuffle() {
 		newPosition := r.Intn(len(d) - 1)
 
 		d[i], d[newPosition] = d[newPosition], d[i]
+
 	}
 }
