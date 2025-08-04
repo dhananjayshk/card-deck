@@ -1,5 +1,7 @@
 package main
 
+import "github.com/dhananjayshk/card-deck/deck"
+
 func main() {
 	// cards := newDeck()
 
@@ -11,7 +13,8 @@ func main() {
 	// cards.saveToFile(("my_cards"))
 	// cards, _ := newDeckFromFile("my_cards")/
 
-	cards := newDeck()
-	cards.shuffle()
-	cards.print()
+	cards := deck.NewDeck()
+
+	cards.Shuffle()
+	cards.Print()
 }

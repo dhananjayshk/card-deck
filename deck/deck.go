@@ -1,4 +1,4 @@
-package main
+package deck
 
 import (
 	"fmt"
@@ -10,7 +10,7 @@ import (
 
 type deck []string
 
-func newDeck() deck {
+func NewDeck() deck {
 	cards := deck{}
 
 	cardSuits := []string{"Spades", "Diamonds", "Hearts", "Clubs"}
@@ -24,7 +24,7 @@ func newDeck() deck {
 	return cards
 }
 
-func (d deck) print() {
+func (d deck) Print() {
 	for i, card := range d {
 		println(i, card)
 	}
@@ -38,11 +38,12 @@ func (d deck) toString() string {
 	return strings.Join([]string(d), ",")
 }
 
-func (d deck) saveToFile(filename string) error {
+
+func (d deck) SaveToFile(filename string) error {
 	return os.WriteFile(filename, []byte(d.toString()), 0666)
 }
 
-func newDeckFromFile(filename string) (deck, error) {
+func NewDeckFromFile(filename string) (deck, error) {
 	bs, err := os.ReadFile(filename)
 	if err != nil {
 		// Option #1 - log the erro and return a call to newDeck()
@@ -55,7 +56,7 @@ func newDeckFromFile(filename string) (deck, error) {
 	return deck(ss), nil
 }
 
-func (d deck) shuffle() {
+func (d deck) Shuffle() {
 	source := rand.NewSource(time.Now().UnixNano())
 	r := rand.New(source)
 

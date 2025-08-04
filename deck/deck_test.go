@@ -1,12 +1,14 @@
-package main
+package deck_test
 
 import (
 	"os"
 	"testing"
+
+	"github.com/dhananjayshk/card-deck/deck"
 )
 
 func TestNewDeck(t *testing.T) {
-	d := newDeck()
+	d := deck.NewDeck()
 	if len(d) != 52 {
 		t.Errorf("Expected deck length of 20, but got %v", len(d))
 	}
@@ -23,10 +25,10 @@ func TestNewDeck(t *testing.T) {
 func TestSaveToDeckAndNewDeckFromFile(t *testing.T) {
 	os.Remove("_decktesting")
 
-	deck := newDeck()
-	deck.saveToFile("_decktesting")
-	loadedDeck, err:= newDeckFromFile("_decktesting")
-	if len(loadedDeck) != 52{
+	deck := deck.NewDeck()
+	deck.SaveToFile("_decktesting")
+	loadedDeck, err := deck.NewDeckFromFile("_decktesting")
+	if len(loadedDeck) != 52 {
 		t.Errorf("Expected 52 cards in deck, but got %v", len(loadedDeck))
 	}
 
