@@ -9,6 +9,10 @@ import (
 	"time"
 )
 
+func init() {
+	log.Println("Initializing the deck package")
+}
+
 type deck []string
 
 // NewDeck creates a new deck of cards
